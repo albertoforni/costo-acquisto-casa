@@ -1,0 +1,28 @@
+{
+  "scripts": {
+    "dev": "snowpack dev",
+    "build": "snowpack build",
+    "format": "prettier --write \"src/**/*.{ts,js}\"",
+    "lint": "prettier --check \"src/**/*.{ts,js}\""
+  },
+  "dependencies": {
+    "solid-js": "^0.24.14"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.10",
+    "@babel/preset-typescript": "^7.13.0",
+    "@rollup/plugin-replace": "^2.4.1",
+    "@snowpack/plugin-babel": "^2.1.6",
+    "@snowpack/plugin-postcss": "^1.1.0",
+    "@snowpack/plugin-typescript": "^1.2.1",
+    "@types/snowpack-env": "^2.3.3",
+    "autoprefixer": "^10.2.5",
+    "babel-preset-solid": "^0.24.13",
+    "postcss": "^8.2.8",
+    "postcss-cli": "^8.3.1",
+    "prettier": "^2.2.1",
+    "snowpack": "^3.0.13",
+    "tailwindcss": "^2.0.3",
+    "typescript": "^4.2.3"
+  }
+}
