@@ -1,29 +1,17 @@
 import { Component, createSignal } from "solid-js";
+import { agencyFee } from "./store/rules";
 
 export const App: Component = () => {
-  const [count, setCount] = createSignal(0);
-  const increment = (by = 1) => setCount(count() + by);
-  const decrement = (by = 1) => setCount(count() - by);
+  const [price, setPrice] = createSignal(0);
 
   return (
-    <>
-      <button
-        type="button"
-        onClick={() => decrement(2)}
-        class="bg-gray-900 text-gray-100 p-4 text-3xl"
-      >
-        -
-      </button>
-
-      <span class="p-4 text-3xl">{count()}</span>
-
-      <button
-        type="button"
-        onClick={() => increment(1)}
-        class="bg-gray-900 text-gray-100 p-4 text-3xl"
-      >
-        +
-      </button>
-    </>
+    <main>
+      <h1 className="text-2xl">Costo Acquisto Casa</h1>
+      <input
+        onInput={(e) => setPrice(parseInt(e.currentTarget.value))}
+        class="text-gray-900 font-bold"
+      />
+      <p>{agencyFee({ kind: "PERCENTAGE", price: price(), percentage: 3 })}</p>
+    </main>
   );
 };
