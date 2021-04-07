@@ -8,6 +8,7 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
+    "@tailwindcss/forms": "^0.3.2",
     "solid-js": "^0.24.14"
   },
   "devDependencies": {
