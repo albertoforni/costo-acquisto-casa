@@ -1,35 +1,25 @@
-import { Component, createSignal } from "solid-js";
-import { agencyFee } from "./store/rules";
+import { Component, createSignal, createState } from "solid-js";
+import { Agency } from "@app/agency";
+import { Input } from "@app/input";
 
 export const App: Component = () => {
-  const [price, setPrice] = createSignal(0);
+  const [state, setState] = createState({ price: 200_000 });
 
   return (
-    <main class="max-w-xl m-auto grid p-3">
+    <main class="max-w-2xl m-auto grid p-3">
       <h1 class="text-2xl">Costo Acquisto Casa</h1>
-      <section class="grid grid-cols-3">
+      <section class="mt-2 grid grid-cols-3 gap-2 font-bold text-xl">
         <label class="col-span-2" htmlFor="price">
           Prezzo di acquisto
         </label>
-        <input
+        <Input
           id="price"
-          class="border focus:ring-indigo-500 focus:border-indigo-500 rounded-md border-gray-300 text-right"
-          onInput={(e) => setPrice(parseInt(e.currentTarget.value))}
+          onInput={(e) => setState("price", parseInt(e.currentTarget.value))}
+          value={state.price}
+          symbol="€"
         />
       </section>
-      <section class="grid grid-cols-3">
-        <h2 class="col-span-3">Agenzia</h2>
-        <div>
-          <input
-            disabled
-            value={agencyFee({
-              kind: "PERCENTAGE",
-              price: price(),
-              percentage: 3,
-            })}
-          />
-        </div>
-      </section>
+      <Agency price={state.price} />
     </main>
   );
 };

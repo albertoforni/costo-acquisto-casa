@@ -3,7 +3,7 @@ import "./styles/tailwind.css";
 import { render } from "solid-js/web";
 import { App } from "@app/app";
 
-const dispose = render(() => <App />, document.getElementById("app"));
+const dispose = render(() => <App />, document.getElementById("app")!);
 
 /**
  * Hot Module Replacement (HMR) - Remove this snippet to remove HMR.

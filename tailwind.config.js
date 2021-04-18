@@ -4,6 +4,10 @@ module.exports = {
   theme: {
     extend: {},
   },
-  variants: {},
+  variants: {
+    extend: {
+      backgroundColor: ["disabled"],
+    },
+  },
   plugins: [require("@tailwindcss/forms")],
 };
