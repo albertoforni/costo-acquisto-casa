@@ -1,9 +1,10 @@
-import { Component, createSignal, createState } from "solid-js";
+import { Component, useContext } from "solid-js";
 import { Agency } from "@app/agency";
 import { Input } from "@app/input";
+import { StoreContext } from "@app/store-context";
 
 export const App: Component = () => {
-  const [state, setState] = createState({ price: 200_000 });
+  const [state, setState] = useContext(StoreContext);
 
   return (
     <main class="max-w-2xl m-auto grid p-3">
@@ -14,12 +15,14 @@ export const App: Component = () => {
         </label>
         <Input
           id="price"
-          onInput={(e) => setState("price", parseInt(e.currentTarget.value))}
-          value={state.price}
+          onInput={(e) =>
+            setState("building", "price", parseInt(e.currentTarget.value))
+          }
+          value={state.building.price}
           symbol="€"
         />
       </section>
-      <Agency price={state.price} />
+      <Agency />
     </main>
   );
 };

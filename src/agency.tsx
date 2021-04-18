@@ -1,29 +1,24 @@
-import { createState } from "solid-js";
+import { createState, useContext } from "solid-js";
 
 import { Input } from "@app/input";
 import { agencyFee } from "@app/store/rules";
+import { StoreContext } from "@app/store-context";
 
-type Props = {
-  price: number;
-};
-
-export function Agency(props: Props) {
-  const [state, setState] = createState({
-    isViaAgency: false,
-    percentage: 3,
-    isOverriddenAgencyFee: false,
-    overriddenAgencyFee: 0,
-  });
+export function Agency() {
+  const [state, setState] = useContext(StoreContext);
 
   const total = () => {
-    if (state.isViaAgency) {
-      if (state.isOverriddenAgencyFee) {
-        return agencyFee({ kind: "VALUE", fee: state.overriddenAgencyFee });
+    if (state.building.isViaAgent) {
+      if (state.building.hasOverriddenAgencyFee) {
+        return agencyFee({
+          kind: "VALUE",
+          fee: state.building.overriddenAgentFee,
+        });
       } else {
         return agencyFee({
           kind: "PERCENTAGE",
-          percentage: state.percentage,
-          price: props.price,
+          percentage: state.building.agentPercentageFee,
+          price: state.building.price,
         });
       }
     } else {
@@ -39,8 +34,10 @@ export function Agency(props: Props) {
         <input
           class="h-4 w-4 mr-2 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
           type="checkbox"
-          checked={state.isViaAgency}
-          onChange={() => setState("isViaAgency", !state.isViaAgency)}
+          checked={state.building.isViaAgent}
+          onChange={() =>
+            setState("building", "isViaAgent", !state.building.isViaAgent)
+          }
         />
         <h2 class="inline-block">Agenzia</h2>
       </label>
@@ -52,14 +49,20 @@ export function Agency(props: Props) {
         <Input
           id="percentage"
           symbol="%"
-          disabled={!state.isViaAgency || state.isOverriddenAgencyFee}
+          disabled={
+            !state.building.isViaAgent || state.building.hasOverriddenAgencyFee
+          }
           value={
-            state.isViaAgency && !state.isOverriddenAgencyFee
-              ? state.percentage
+            state.building.isViaAgent && !state.building.hasOverriddenAgencyFee
+              ? state.building.agentPercentageFee
               : "-"
           }
           onInput={(e) =>
-            setState("percentage", parseFloat(e.currentTarget.value))
+            setState(
+              "building",
+              "agentPercentageFee",
+              parseFloat(e.currentTarget.value),
+            )
           }
         />
       </div>
@@ -69,12 +72,12 @@ export function Agency(props: Props) {
           symbol="€"
           disabled={true}
           value={
-            !state.isViaAgency || state.isOverriddenAgencyFee
+            !state.building.isViaAgent || state.building.hasOverriddenAgencyFee
               ? "-"
               : agencyFee({
                   kind: "PERCENTAGE",
-                  price: props.price,
-                  percentage: state.percentage,
+                  price: state.building.price,
+                  percentage: state.building.agentPercentageFee,
                 }).toString()
           }
         />
@@ -85,9 +88,13 @@ export function Agency(props: Props) {
             id="selectAgencyFixed"
             type="checkbox"
             class="h-4 w-4 mr-2 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-            checked={state.isOverriddenAgencyFee}
+            checked={state.building.hasOverriddenAgencyFee}
             onChange={() =>
-              setState("isOverriddenAgencyFee", !state.isOverriddenAgencyFee)
+              setState(
+                "building",
+                "hasOverriddenAgencyFee",
+                !state.building.hasOverriddenAgencyFee,
+              )
             }
           />
           <label htmlFor="selectAgencyFixed">
@@ -97,10 +104,18 @@ export function Agency(props: Props) {
         <Input
           id="agencyFixed"
           symbol="€"
-          disabled={!state.isOverriddenAgencyFee}
-          value={state.isOverriddenAgencyFee ? state.overriddenAgencyFee : "-"}
+          disabled={!state.building.hasOverriddenAgencyFee}
+          value={
+            state.building.hasOverriddenAgencyFee
+              ? state.building.overriddenAgentFee
+              : "-"
+          }
           onInput={(e) =>
-            setState("overriddenAgencyFee", parseInt(e.currentTarget.value))
+            setState(
+              "building",
+              "overriddenAgentFee",
+              parseInt(e.currentTarget.value),
+            )
           }
         />
       </div>

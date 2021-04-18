@@ -1,9 +1,38 @@
-import "./styles/tailwind.css";
-
 import { render } from "solid-js/web";
-import { App } from "@app/app";
+import { createRenderEffect } from "solid-js";
 
-const dispose = render(() => <App />, document.getElementById("app")!);
+import "@app/styles/tailwind.css";
+import { App } from "@app/app";
+import { init } from "@app/store/index";
+import { StoreContext } from "@app/store-context";
+
+const localStorageStore = localStorage.getItem("store");
+const storeInitialValue = localStorageStore
+  ? JSON.parse(localStorageStore)
+  : null;
+
+const store = init(storeInitialValue);
+
+createRenderEffect(() => {
+  Object.values(store[0]);
+  localStorage.setItem("store", JSON.stringify(store[0], null, 4));
+});
+
+if (process.env.NODE_ENV === "development") {
+  createRenderEffect(() => {
+    Object.values(store[0]);
+    console.log(JSON.stringify(store[0], null, 4));
+  });
+}
+
+const dispose = render(
+  () => (
+    <StoreContext.Provider value={store}>
+      <App />
+    </StoreContext.Provider>
+  ),
+  document.getElementById("app")!,
+);
 
 /**
  * Hot Module Replacement (HMR) - Remove this snippet to remove HMR.
