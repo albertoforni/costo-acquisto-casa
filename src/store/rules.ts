@@ -39,3 +39,58 @@ export function agencyFee(args: AgencyFee): number {
 
   return Math.max(fee, 0);
 }
+
+type TaxesRequirements =
+  | {
+      price: number;
+      isPrimaCasa: boolean;
+      isSoldByCompany: true;
+    }
+  | {
+      isPrimaCasa: boolean;
+      isSoldByCompany: false;
+      renditaCatastale: number;
+    };
+
+export type TaxesResult = {
+  registro: number;
+  catastale: number;
+  ipotecaria: number;
+  VAT: number;
+};
+
+export function taxes(args: TaxesRequirements): TaxesResult {
+  if (args.isPrimaCasa) {
+    if (args.isSoldByCompany) {
+      return {
+        registro: 200,
+        catastale: 200,
+        ipotecaria: 200,
+        VAT: (args.price * 4) / 100,
+      };
+    } else {
+      return {
+        registro: (args.renditaCatastale * 115.5 * 2) / 100,
+        catastale: 50,
+        ipotecaria: 50,
+        VAT: 0,
+      };
+    }
+  } else {
+    if (args.isSoldByCompany) {
+      return {
+        registro: 200,
+        catastale: 200,
+        ipotecaria: 200,
+        VAT: (args.price * 10) / 100,
+      };
+    } else {
+      return {
+        registro: (args.renditaCatastale * 126 * 2) / 100,
+        catastale: 50,
+        ipotecaria: 50,
+        VAT: 0,
+      };
+    }
+  }
+}

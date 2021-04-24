@@ -6,6 +6,7 @@ type Props = {
   disabled?: boolean;
   onInput?: JSX.EventHandlerUnion<HTMLInputElement, InputEvent> | undefined;
   symbol: string;
+  isBold?: boolean;
 };
 
 export function Input(props: Props) {
@@ -16,7 +17,9 @@ export function Input(props: Props) {
         <span class="absolute pl-1 ml-1">{props.symbol}</span>
         <input
           id={props.id}
-          class="border w-full block focus:ring-indigo-500 focus:border-indigo-500 rounded-md border-gray-300 text-right p-1 disabled:bg-gray-200"
+          class={"border w-full block focus:ring-indigo-500 focus:border-indigo-500 rounded-md border-gray-300 text-right p-1 disabled:bg-gray-200".concat(
+            props.isBold ? " font-bold" : "",
+          )}
           onInput={props.onInput}
           disabled={props.disabled}
           type="text"

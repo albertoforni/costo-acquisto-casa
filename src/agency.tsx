@@ -1,4 +1,4 @@
-import { createState, useContext } from "solid-js";
+import { useContext } from "solid-js";
 
 import { Input } from "@app/input";
 import { agencyFee } from "@app/store/rules";
@@ -26,10 +26,8 @@ export function Agency() {
     }
   };
 
-  console.log(total);
-
   return (
-    <section class="mt-2 grid grid-cols-3 gap-2">
+    <section class="mt-4 grid grid-cols-3 gap-2 border p-2 border-gray-200 rounded">
       <label class="col-span-3 font-bold text-xl flex items-center">
         <input
           class="h-4 w-4 mr-2 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
@@ -119,8 +117,17 @@ export function Agency() {
           }
         />
       </div>
-      <div class="col-start-3">
-        <Input id="agencyTotal" symbol="€" disabled={true} value={total()} />
+      <div class="col-span-3 grid grid-cols-3 gap-2">
+        <label class="col-span-2 flex items-center font-bold" for="agencyTotal">
+          Totale Costi Agenzia
+        </label>
+        <Input
+          id="agencyTotal"
+          symbol="€"
+          disabled={true}
+          value={total()}
+          isBold={true}
+        />
       </div>
     </section>
   );

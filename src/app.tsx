@@ -2,6 +2,7 @@ import { Component, useContext } from "solid-js";
 import { Agency } from "@app/agency";
 import { Input } from "@app/input";
 import { StoreContext } from "@app/store-context";
+import { Taxes } from "@app/taxes";
 
 export const App: Component = () => {
   const [state, setState] = useContext(StoreContext);
@@ -23,6 +24,7 @@ export const App: Component = () => {
         />
       </section>
       <Agency />
+      <Taxes />
     </main>
   );
 };
