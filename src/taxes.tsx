@@ -32,9 +32,9 @@ export function Taxes() {
 
   return (
     <section class="mt-4 grid grid-cols-3 gap-2 border p-2 border-gray-200 rounded">
-      <label class="col-span-3 font-bold text-xl flex items-center">
+      <div class="col-span-3 font-bold text-xl flex items-center">
         <h2 class="inline-block">Imposte e Tasse</h2>
-      </label>
+      </div>
       <div class="col-span-3 grid grid-cols-3 gap-2">
         <label class="col-span-2 flex items-center" for="seller">
           Il soggetto venditore e'

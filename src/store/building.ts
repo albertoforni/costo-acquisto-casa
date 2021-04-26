@@ -20,12 +20,17 @@ type Mortgage = {
   perizia: number;
 };
 
+type Notary = {
+  notaryFee: number;
+};
+
 export type Building = {
   id: Id;
   price: number;
 } & Agency &
   Taxes &
-  Mortgage;
+  Mortgage &
+  Notary;
 
 export function init(): Building {
   return {
@@ -42,5 +47,6 @@ export function init(): Building {
     mortgage: 100_000,
     particaMutuo: 500,
     perizia: 1_000,
+    notaryFee: 2_500,
   };
 }
