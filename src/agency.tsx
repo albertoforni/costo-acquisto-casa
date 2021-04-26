@@ -1,29 +1,14 @@
 import { useContext } from "solid-js";
 
 import { Input } from "@app/input";
-import { agencyFee } from "@app/store/rules";
+import { agencyFee, totalAgencyFee } from "@app/store/rules";
 import { StoreContext } from "@app/store-context";
 
 export function Agency() {
   const [state, setState] = useContext(StoreContext);
 
   const total = () => {
-    if (state.building.isViaAgent) {
-      if (state.building.hasOverriddenAgencyFee) {
-        return agencyFee({
-          kind: "VALUE",
-          fee: state.building.overriddenAgentFee,
-        });
-      } else {
-        return agencyFee({
-          kind: "PERCENTAGE",
-          percentage: state.building.agentPercentageFee,
-          price: state.building.price,
-        });
-      }
-    } else {
-      return agencyFee({ kind: "NONE" });
-    }
+    return totalAgencyFee(state.building);
   };
 
   return (

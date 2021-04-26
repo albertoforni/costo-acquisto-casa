@@ -1,33 +1,18 @@
 import { useContext } from "solid-js";
 
 import { Input } from "@app/input";
-import { taxes, TaxesResult } from "@app/store/rules";
+import { taxes, TaxesResult, taxValues } from "@app/store/rules";
 import { StoreContext } from "@app/store-context";
 
 export function Taxes() {
   const [state, setState] = useContext(StoreContext);
 
-  const taxValues = (): TaxesResult => {
-    if (state.building.isSoldByCompany) {
-      return taxes({
-        price: state.building.price,
-        isPrimaCasa: state.building.isPrimaCasa,
-        isSoldByCompany: state.building.isSoldByCompany,
-      });
-    } else {
-      return taxes({
-        isPrimaCasa: state.building.isPrimaCasa,
-        isSoldByCompany: state.building.isSoldByCompany,
-        renditaCatastale: state.building.renditaCatastale,
-      });
-    }
+  const allTaxes = (): TaxesResult => {
+    return taxValues(state.building);
   };
 
   const total = (): number => {
-    return Object.values(taxValues()).reduce(
-      (total, value) => total + value,
-      0,
-    );
+    return Object.values(allTaxes()).reduce((total, value) => total + value, 0);
   };
 
   return (
@@ -111,7 +96,7 @@ export function Taxes() {
           id="registro"
           symbol="€"
           disabled={true}
-          value={taxValues().registro}
+          value={allTaxes().registro}
         />
       </div>
       <div class="col-span-3 grid grid-cols-3 gap-2">
@@ -122,7 +107,7 @@ export function Taxes() {
           id="catastale"
           symbol="€"
           disabled={true}
-          value={taxValues().catastale}
+          value={allTaxes().catastale}
         />
       </div>
       <div class="col-span-3 grid grid-cols-3 gap-2">
@@ -133,7 +118,7 @@ export function Taxes() {
           id="ipotecaria"
           symbol="€"
           disabled={true}
-          value={taxValues().ipotecaria}
+          value={allTaxes().ipotecaria}
         />
       </div>
       <div class="col-span-3 grid grid-cols-3 gap-2">

@@ -4,7 +4,8 @@ import { Input } from "@app/input";
 import { StoreContext } from "@app/store-context";
 import { Taxes } from "@app/taxes";
 import { Mortgage } from "@app/mortgage";
-import { Notary } from "./notary";
+import { Notary } from "@app/notary";
+import { Total } from "@app/total";
 
 export const App: Component = () => {
   const [state, setState] = useContext(StoreContext);
@@ -29,6 +30,7 @@ export const App: Component = () => {
       <Taxes />
       <Mortgage />
       <Notary />
+      <Total />
     </main>
   );
 };

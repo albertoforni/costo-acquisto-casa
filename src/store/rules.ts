@@ -1,3 +1,5 @@
+import type { Building } from "@app/store/building";
+
 export function agencyFeePercentage({
   price,
   percentage,
@@ -38,6 +40,25 @@ export function agencyFee(args: AgencyFee): number {
   }
 
   return Math.max(fee, 0);
+}
+
+export function totalAgencyFee(building: Building): number {
+  if (building.isViaAgent) {
+    if (building.hasOverriddenAgencyFee) {
+      return agencyFee({
+        kind: "VALUE",
+        fee: building.overriddenAgentFee,
+      });
+    } else {
+      return agencyFee({
+        kind: "PERCENTAGE",
+        percentage: building.agentPercentageFee,
+        price: building.price,
+      });
+    }
+  } else {
+    return agencyFee({ kind: "NONE" });
+  }
 }
 
 type TaxesRequirements =
@@ -92,6 +113,22 @@ export function taxes(args: TaxesRequirements): TaxesResult {
         VAT: 0,
       };
     }
+  }
+}
+
+export function taxValues(building: Building): TaxesResult {
+  if (building.isSoldByCompany) {
+    return taxes({
+      price: building.price,
+      isPrimaCasa: building.isPrimaCasa,
+      isSoldByCompany: building.isSoldByCompany,
+    });
+  } else {
+    return taxes({
+      isPrimaCasa: building.isPrimaCasa,
+      isSoldByCompany: building.isSoldByCompany,
+      renditaCatastale: building.renditaCatastale,
+    });
   }
 }
 
