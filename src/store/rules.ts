@@ -94,3 +94,21 @@ export function taxes(args: TaxesRequirements): TaxesResult {
     }
   }
 }
+
+type MortgageInput = {
+  price: number;
+  isPrimaCasa: boolean;
+};
+type MortgageResult = { impostaSostitutiva: number };
+
+export function mortgage(args: MortgageInput): MortgageResult {
+  if (args.isPrimaCasa) {
+    return {
+      impostaSostitutiva: (args.price * 0.25) / 100,
+    };
+  } else {
+    return {
+      impostaSostitutiva: (args.price * 2) / 100,
+    };
+  }
+}

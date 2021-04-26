@@ -13,11 +13,19 @@ type Taxes = {
   renditaCatastale: number;
 };
 
+type Mortgage = {
+  hasMortgage: boolean;
+  mortgage: number;
+  particaMutuo: number;
+  perizia: number;
+};
+
 export type Building = {
   id: Id;
   price: number;
 } & Agency &
-  Taxes;
+  Taxes &
+  Mortgage;
 
 export function init(): Building {
   return {
@@ -30,5 +38,9 @@ export function init(): Building {
     isPrimaCasa: true,
     isSoldByCompany: false,
     renditaCatastale: 1_000,
+    hasMortgage: false,
+    mortgage: 100_000,
+    particaMutuo: 500,
+    perizia: 1_000,
   };
 }

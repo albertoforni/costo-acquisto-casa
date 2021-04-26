@@ -1,4 +1,4 @@
-import { agencyFee, taxes } from "@app/store/rules";
+import { agencyFee, mortgage, taxes } from "@app/store/rules";
 
 describe("Agency Fee", () => {
   it("returns percentage + VAT if isViaAgency is true", () => {
@@ -109,6 +109,30 @@ describe("Taxes", () => {
       catastale: 50,
       ipotecaria: 50,
       VAT: 0,
+    });
+  });
+});
+
+describe("Mortgage", () => {
+  it("imposta sostitutiva al 0.25% se prima casa", () => {
+    expect(
+      mortgage({
+        price: 100,
+        isPrimaCasa: true,
+      }),
+    ).toEqual({
+      impostaSostitutiva: 0.25,
+    });
+  });
+
+  it("imposta sostitutiva al 2% se prima casa", () => {
+    expect(
+      mortgage({
+        price: 200,
+        isPrimaCasa: false,
+      }),
+    ).toEqual({
+      impostaSostitutiva: 4,
     });
   });
 });
