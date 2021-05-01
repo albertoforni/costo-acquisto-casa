@@ -12,7 +12,7 @@ export function Total() {
       state.building.particaMutuo +
       state.building.perizia +
       mortgage({
-        price: state.building.price,
+        mortgage: state.building.mortgage,
         isPrimaCasa: state.building.isPrimaCasa,
       }).impostaSostitutiva
     );

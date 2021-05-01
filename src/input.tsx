@@ -1,16 +1,29 @@
-import type { JSX } from "solid-js/jsx-runtime";
-
 type Props = {
   id: string;
-  value: string | number;
+  value: number | null;
   disabled?: boolean;
-  onInput?: JSX.EventHandlerUnion<HTMLInputElement, InputEvent> | undefined;
+  onChange?: (value: number) => void;
   symbol: string;
   isBold?: boolean;
 };
 
+const formatter = new Intl.NumberFormat("it-IT", {
+  style: "decimal",
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
+
 export function Input(props: Props) {
-  const value = () => props.value;
+  const getFormattedValue = () => {
+    if (props.value === null) {
+      return "-";
+    } else {
+      return formatter.format(props.value);
+    }
+  };
+
+  let ref: HTMLInputElement | undefined = undefined;
+
   return (
     <div>
       <div class="relative flex items-center rounded-md shadow-sm overflow-hidden">
@@ -20,10 +33,25 @@ export function Input(props: Props) {
           class={"border w-full block focus:ring-indigo-500 focus:border-indigo-500 rounded-md border-gray-300 text-right p-1 disabled:bg-gray-200".concat(
             props.isBold ? " font-bold" : "",
           )}
-          onInput={props.onInput}
+          ref={(node) => (ref = node)}
+          onFocus={() => {
+            ref?.select();
+            ref?.setAttribute(
+              "value",
+              typeof props.value === "number" ? props.value.toString() : "0",
+            );
+          }}
+          onChange={(e) => {
+            if (props.onChange) {
+              const value = parseFloat(e.currentTarget.value);
+              if (!isNaN(value)) {
+                props.onChange(value);
+              }
+            }
+          }}
           disabled={props.disabled}
           type="text"
-          value={value()}
+          value={getFormattedValue()}
           placeholder="0"
         />
       </div>

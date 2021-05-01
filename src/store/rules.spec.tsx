@@ -117,7 +117,7 @@ describe("Mortgage", () => {
   it("imposta sostitutiva al 0.25% se prima casa", () => {
     expect(
       mortgage({
-        price: 100,
+        mortgage: 100,
         isPrimaCasa: true,
       }),
     ).toEqual({
@@ -128,7 +128,7 @@ describe("Mortgage", () => {
   it("imposta sostitutiva al 2% se prima casa", () => {
     expect(
       mortgage({
-        price: 200,
+        mortgage: 200,
         isPrimaCasa: false,
       }),
     ).toEqual({

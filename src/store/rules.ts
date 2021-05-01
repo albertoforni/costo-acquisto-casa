@@ -133,7 +133,7 @@ export function taxValues(building: Building): TaxesResult {
 }
 
 type MortgageInput = {
-  price: number;
+  mortgage: number;
   isPrimaCasa: boolean;
 };
 type MortgageResult = { impostaSostitutiva: number };
@@ -141,11 +141,11 @@ type MortgageResult = { impostaSostitutiva: number };
 export function mortgage(args: MortgageInput): MortgageResult {
   if (args.isPrimaCasa) {
     return {
-      impostaSostitutiva: (args.price * 0.25) / 100,
+      impostaSostitutiva: (args.mortgage * 0.25) / 100,
     };
   } else {
     return {
-      impostaSostitutiva: (args.price * 2) / 100,
+      impostaSostitutiva: (args.mortgage * 2) / 100,
     };
   }
 }

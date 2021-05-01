@@ -20,9 +20,7 @@ export function Notary() {
           id="notary"
           symbol="€"
           value={state.building.notaryFee}
-          onInput={(e) =>
-            setState("building", "notaryFee", parseInt(e.currentTarget.value))
-          }
+          onChange={(value) => setState("building", "notaryFee", value)}
         />
       </div>
       <div class="col-span-3 grid grid-cols-3 gap-2">

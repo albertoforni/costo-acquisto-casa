@@ -9,7 +9,7 @@ export function Mortgage() {
 
   const impostaSostitutiva = () =>
     mortgage({
-      price: state.building.price,
+      mortgage: state.building.mortgage,
       isPrimaCasa: state.building.isPrimaCasa,
     }).impostaSostitutiva;
 
@@ -42,10 +42,8 @@ export function Mortgage() {
           id="mortgage"
           symbol="€"
           disabled={!state.building.hasMortgage}
-          value={state.building.mortgage}
-          onInput={(e) =>
-            setState("building", "mortgage", parseInt(e.currentTarget.value))
-          }
+          value={state.building.hasMortgage ? state.building.mortgage : null}
+          onChange={(value) => setState("building", "mortgage", value)}
         />
       </div>
       <div class="col-span-3 grid grid-cols-3 gap-2">
@@ -56,14 +54,10 @@ export function Mortgage() {
           id="praticaMutuo"
           symbol="€"
           disabled={!state.building.hasMortgage}
-          value={state.building.particaMutuo}
-          onInput={(e) =>
-            setState(
-              "building",
-              "particaMutuo",
-              parseInt(e.currentTarget.value),
-            )
+          value={
+            state.building.hasMortgage ? state.building.particaMutuo : null
           }
+          onChange={(value) => setState("building", "particaMutuo", value)}
         />
       </div>
       <div class="col-span-3 grid grid-cols-3 gap-2">
@@ -74,10 +68,8 @@ export function Mortgage() {
           id="perizia"
           symbol="€"
           disabled={!state.building.hasMortgage}
-          value={state.building.perizia}
-          onInput={(e) =>
-            setState("building", "perizia", parseInt(e.currentTarget.value))
-          }
+          value={state.building.hasMortgage ? state.building.perizia : null}
+          onChange={(value) => setState("building", "perizia", value)}
         />
       </div>
       <div class="col-span-3 grid grid-cols-3 gap-2">
@@ -88,7 +80,7 @@ export function Mortgage() {
           id="impostaSostitutiva"
           symbol="€"
           disabled={true}
-          value={impostaSostitutiva()}
+          value={state.building.hasMortgage ? impostaSostitutiva() : null}
         />
       </div>
       <div class="col-span-3 grid grid-cols-3 gap-2">
@@ -99,7 +91,7 @@ export function Mortgage() {
           id="costiMutuo"
           symbol="€"
           disabled={true}
-          value={total()}
+          value={state.building.hasMortgage ? total() : null}
           isBold={true}
         />
       </div>

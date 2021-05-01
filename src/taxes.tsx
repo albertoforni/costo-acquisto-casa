@@ -70,7 +70,13 @@ export function Taxes() {
           </option>
         </select>
       </div>
-      <div class="col-span-3 grid grid-cols-3 gap-2">
+      <div
+        class={
+          state.building.isSoldByCompany
+            ? "hidden"
+            : "col-span-3 grid grid-cols-3 gap-2"
+        }
+      >
         <label class="col-span-2 flex items-center" for="renditaCatastale">
           Rendita Catastale
         </label>
@@ -79,14 +85,20 @@ export function Taxes() {
           symbol="€"
           disabled={state.building.isSoldByCompany}
           value={state.building.renditaCatastale}
-          onInput={(e) =>
-            setState(
-              "building",
-              "renditaCatastale",
-              parseInt(e.currentTarget.value),
-            )
-          }
+          onChange={(value) => setState("building", "renditaCatastale", value)}
         />
+      </div>
+      <div
+        class={
+          state.building.isSoldByCompany
+            ? "col-span-3 grid grid-cols-3 gap-2"
+            : "hidden"
+        }
+      >
+        <label class="col-span-2 flex items-center" for="VAT">
+          IVA {state.building.isPrimaCasa ? "4%" : "10%"}
+        </label>
+        <Input id="VAT" symbol="€" disabled={true} value={allTaxes().VAT} />
       </div>
       <div class="col-span-3 grid grid-cols-3 gap-2">
         <label class="col-span-2 flex items-center" for="registro">

@@ -38,14 +38,10 @@ export function Agency() {
           value={
             state.building.isViaAgent && !state.building.hasOverriddenAgencyFee
               ? state.building.agentPercentageFee
-              : "-"
+              : null
           }
-          onInput={(e) =>
-            setState(
-              "building",
-              "agentPercentageFee",
-              parseFloat(e.currentTarget.value),
-            )
+          onChange={(value) =>
+            setState("building", "agentPercentageFee", value)
           }
         />
       </div>
@@ -56,12 +52,12 @@ export function Agency() {
           disabled={true}
           value={
             !state.building.isViaAgent || state.building.hasOverriddenAgencyFee
-              ? "-"
+              ? null
               : agencyFee({
                   kind: "PERCENTAGE",
                   price: state.building.price,
                   percentage: state.building.agentPercentageFee,
-                }).toString()
+                })
           }
         />
       </div>
@@ -91,14 +87,10 @@ export function Agency() {
           value={
             state.building.hasOverriddenAgencyFee
               ? state.building.overriddenAgentFee
-              : "-"
+              : null
           }
-          onInput={(e) =>
-            setState(
-              "building",
-              "overriddenAgentFee",
-              parseInt(e.currentTarget.value),
-            )
+          onChange={(value) =>
+            setState("building", "overriddenAgentFee", value)
           }
         />
       </div>
