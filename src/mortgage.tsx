@@ -35,7 +35,7 @@ export function Mortgage() {
         <h2 class="inline-block">Mutuo</h2>
       </label>
       <div class="col-span-3 grid grid-cols-3 gap-2">
-        <label class="col-span-2" for="mortgage">
+        <label class="col-span-2 flex items-center" for="mortgage">
           Importo Mutuo
         </label>
         <Input
@@ -47,7 +47,7 @@ export function Mortgage() {
         />
       </div>
       <div class="col-span-3 grid grid-cols-3 gap-2">
-        <label class="col-span-2" for="praticaMutuo">
+        <label class="col-span-2 flex items-center" for="praticaMutuo">
           Importo pratica mutuo
         </label>
         <Input
@@ -61,7 +61,7 @@ export function Mortgage() {
         />
       </div>
       <div class="col-span-3 grid grid-cols-3 gap-2">
-        <label class="col-span-2" for="perizia">
+        <label class="col-span-2 flex items-center" for="perizia">
           Perizia dell'immobile
         </label>
         <Input
@@ -73,7 +73,7 @@ export function Mortgage() {
         />
       </div>
       <div class="col-span-3 grid grid-cols-3 gap-2">
-        <label class="col-span-2" for="impostaSostitutiva">
+        <label class="col-span-2 flex items-center" for="impostaSostitutiva">
           Imposta sostitutiva
         </label>
         <Input

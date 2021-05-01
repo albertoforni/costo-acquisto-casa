@@ -13,7 +13,7 @@ export function Notary() {
         <h2 class="inline-block">Oneri Notarili</h2>
       </div>
       <div class="col-span-3 grid grid-cols-3 gap-2">
-        <label class="col-span-2" for="notary">
+        <label class="col-span-2 flex items-center" for="notary">
           Oneri notarili IVA 22% inclusa
         </label>
         <Input

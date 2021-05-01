@@ -14,7 +14,7 @@ export const App: Component = () => {
     <main class="max-w-2xl m-auto grid p-3">
       <h1 class="text-2xl">Costo Acquisto Casa 🏠</h1>
       <section class="mt-4 grid grid-cols-3 gap-2 font-bold text-xl">
-        <label class="col-span-2" htmlFor="price">
+        <label class="col-span-2 flex items-center" htmlFor="price">
           Prezzo di acquisto
         </label>
         <Input

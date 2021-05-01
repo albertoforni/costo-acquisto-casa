@@ -25,7 +25,7 @@ export function Agency() {
         <h2 class="inline-block">Agenzia</h2>
       </label>
       <div class="col-span-3 grid grid-cols-3 gap-2">
-        <label class="col-span-2" for="percentage">
+        <label class="col-span-2 flex items-center" for="percentage">
           Di norma le agenzie hanno una provvigione del 3% + IVA 22% sul prezzo
           di vendita
         </label>
