@@ -27,6 +27,7 @@ type Notary = {
 export type Building = {
   id: Id;
   price: number;
+  description: string;
 } & Agency &
   Taxes &
   Mortgage &
@@ -36,6 +37,7 @@ export function init(): Building {
   return {
     id: id(),
     price: 100_000,
+    description: "",
     isViaAgent: true,
     agentPercentageFee: 3,
     hasOverriddenAgencyFee: false,
