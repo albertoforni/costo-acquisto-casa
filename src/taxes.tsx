@@ -79,6 +79,13 @@ export function Taxes() {
       >
         <label class="col-span-2 flex items-center" for="renditaCatastale">
           Rendita Catastale
+          <a
+            href="https://sister.agenziaentrate.gov.it/CitizenVisure/"
+            target="_blank"
+            class="inline-block ml-6 text-indigo-600 hover:underline"
+          >
+            {" "}Trova rendita castastale
+          </a>
         </label>
         <Input
           id="renditaCatastale"
