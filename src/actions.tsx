@@ -38,9 +38,9 @@ export const Actions = () => {
             if (e.currentTarget.files?.length === 1) {
               const reader = new FileReader();
               reader.onload = async function (ev: ProgressEvent<FileReader>) {
-                const storeSchema = await import(
-                  "@app/store/store-schema.json"
-                );
+                const storeSchema = await fetch(
+                  "/assets/store/store-schema.json",
+                ).then((res) => res.json());
                 const ajv = new Ajv();
                 const validate = ajv.compile(storeSchema);
 
