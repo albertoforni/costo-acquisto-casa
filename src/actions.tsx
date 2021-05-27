@@ -1,5 +1,10 @@
 import { Component, useContext } from "solid-js";
+import Ajv from "ajv";
 import { StoreContext } from "@app/store-context";
+import storeSchema from "@app/store/store-schema.json";
+
+const ajv = new Ajv();
+const validate = ajv.compile(storeSchema);
 
 export const Actions = () => {
   const [state, setState] = useContext(StoreContext);
@@ -39,7 +44,13 @@ export const Actions = () => {
               reader.onload = function (ev: ProgressEvent<FileReader>) {
                 if (ev.target && ev.target.result) {
                   const jsonObj = JSON.parse(ev.target.result.toString());
-                  setState(jsonObj);
+                  const valid = validate(jsonObj);
+                  if (valid) {
+                    setState(jsonObj);
+                  } else {
+                    console.error(validate.errors);
+                    alert("Errore nel caricamento del file");
+                  }
                 }
               };
               reader.readAsText(e.currentTarget.files[0]);

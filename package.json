@@ -5,10 +5,12 @@
     "format": "prettier --write \"src/**/*.{ts,js}\"",
     "lint": "prettier --check \"src/**/*.{ts,js}\"",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "make-store-json-schema": "typescript-json-schema ./tsconfig.json StoreState -o src/store/store-schema.json"
   },
   "dependencies": {
     "@tailwindcss/forms": "^0.3.2",
+    "ajv": "^8.4.0",
     "solid-js": "^0.26.0",
     "uuid": "^8.3.2"
   },
