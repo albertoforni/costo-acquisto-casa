@@ -1,10 +1,6 @@
 import { Component, useContext } from "solid-js";
 import Ajv from "ajv";
 import { StoreContext } from "@app/store-context";
-import storeSchema from "@app/store/store-schema.json";
-
-const ajv = new Ajv();
-const validate = ajv.compile(storeSchema);
 
 export const Actions = () => {
   const [state, setState] = useContext(StoreContext);
@@ -41,7 +37,13 @@ export const Actions = () => {
           onChange={(e) => {
             if (e.currentTarget.files?.length === 1) {
               const reader = new FileReader();
-              reader.onload = function (ev: ProgressEvent<FileReader>) {
+              reader.onload = async function (ev: ProgressEvent<FileReader>) {
+                const storeSchema = await import(
+                  "@app/store/store-schema.json"
+                );
+                const ajv = new Ajv();
+                const validate = ajv.compile(storeSchema);
+
                 if (ev.target && ev.target.result) {
                   const jsonObj = JSON.parse(ev.target.result.toString());
                   const valid = validate(jsonObj);
