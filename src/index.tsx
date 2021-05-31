@@ -18,7 +18,7 @@ createRenderEffect(() => {
   localStorage.setItem("store", JSON.stringify(store[0], null, 4));
 });
 
-if (process.env.NODE_ENV === "development") {
+if (import.meta.env.MODE === "development") {
   createRenderEffect(() => {
     Object.values(store[0]);
     console.log(JSON.stringify(store[0], null, 4));
