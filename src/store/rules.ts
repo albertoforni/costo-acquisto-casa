@@ -107,7 +107,7 @@ export function taxes(args: TaxesRequirements): TaxesResult {
       };
     } else {
       return {
-        registro: (args.renditaCatastale * 126 * 2) / 100,
+        registro: (args.renditaCatastale * 126 * 9) / 100,
         catastale: 50,
         ipotecaria: 50,
         VAT: 0,

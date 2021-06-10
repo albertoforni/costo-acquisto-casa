@@ -97,15 +97,15 @@ describe("Taxes", () => {
     });
   });
 
-  it("returns 0 VAT, catastale and ipotecaria 50 Euros and registro 2% of rendita catastale * 126, when not sold by company and not prima casa", () => {
+  it("returns 0 VAT, catastale and ipotecaria 50 Euros and registro 9% of rendita catastale * 126, when not sold by company and not prima casa", () => {
     expect(
       taxes({
         isPrimaCasa: false,
         isSoldByCompany: false,
-        renditaCatastale: 10,
+        renditaCatastale: 1000,
       }),
     ).toEqual({
-      registro: (10 * 126 * 2) / 100,
+      registro: 11_340,
       catastale: 50,
       ipotecaria: 50,
       VAT: 0,
