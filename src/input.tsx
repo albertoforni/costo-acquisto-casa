@@ -43,14 +43,15 @@ export function Input(props: Props) {
           }}
           onChange={(e) => {
             if (props.onChange) {
-              const stringWithoutDots = e.currentTarget.value.replace(
-                /\./gi,
-                "",
-              );
-              const value = parseFloat(stringWithoutDots);
+              const stringWithoutThousandsSeparator = e.currentTarget.value
+                .replace(/\./gi, "")
+                .replace(/,/gi, ".");
+              const value = parseFloat(stringWithoutThousandsSeparator);
               if (!isNaN(value)) {
                 props.onChange(value);
-              } else {
+              }
+
+              if (value === props.value) {
                 e.currentTarget.value = getFormattedValue();
               }
             }
