@@ -3,27 +3,35 @@ import { createRenderEffect } from "solid-js";
 
 import "@app/styles/tailwind.css";
 import { App } from "@app/app";
-import { init } from "@app/store/index";
+import { init, StoreState } from "@app/store/index";
 import { StoreContext } from "@app/store-context";
 
-const localStorageStore = localStorage.getItem("store");
-const storeInitialValue = localStorageStore
-  ? JSON.parse(localStorageStore)
-  : null;
+function initStore(): StoreState | undefined {
+  try {
+    const storeStr = atob(window.location.hash.replace(/^#/, ""));
+    const storeInitialValue = JSON.parse(storeStr);
+    return storeInitialValue;
+  } catch (e) {
+    console.log("Unable to initiate Store", e);
+    return undefined;
+  }
+}
 
-const store = init(storeInitialValue);
+function saveStateInWindow() {
+  try {
+    const storeJSONStr = JSON.stringify(store[0], null, 4);
+    const base64 = btoa(storeJSONStr);
+    window.location.hash = `#${base64}`;
+  } catch (e) {
+    console.log("Unable to update hash", e);
+  }
+}
+
+const store = init(initStore());
 
 createRenderEffect(() => {
-  Object.values(store[0]);
-  localStorage.setItem("store", JSON.stringify(store[0], null, 4));
+  saveStateInWindow();
 });
-
-if (import.meta.env.MODE === "development") {
-  createRenderEffect(() => {
-    Object.values(store[0]);
-    console.log(JSON.stringify(store[0], null, 4));
-  });
-}
 
 const dispose = render(
   () => (

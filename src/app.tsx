@@ -15,7 +15,7 @@ export const App: Component = () => {
     <main class="max-w-2xl m-auto grid p-3">
       <div class="grid grid-cols-3 gap-2">
         <h1 class="col-span-2 text-2xl flex-1">Costo Acquisto Casa 🏠</h1>
-        <div class="grid gap-4 grid-cols-2">
+        <div class="grid gap-4 grid-cols-3">
           <Actions />
         </div>
       </div>

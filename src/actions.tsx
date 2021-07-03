@@ -18,13 +18,13 @@ export const Actions = () => {
             ? "costo-casa.json"
             : state.building.description.toLocaleLowerCase() + ".json"
         }
-        class="flex items-center justify-center border p1 rounded"
+        class="flex items-center justify-center border p1 rounded text-center"
       >
         Salva 💾
       </a>
       <label
         htmlFor="loadButton"
-        class="flex items-center justify-center border p1 rounded cursor-pointer"
+        class="flex items-center justify-center border p1 rounded cursor-pointer text-center"
       >
         Carica 📤
         <input
@@ -60,6 +60,21 @@ export const Actions = () => {
           }}
         />
       </label>
+      <button
+        onClick={() => {
+          navigator.clipboard.writeText(window.location.toString()).then(
+            function () {
+              alert("Link copiato, incollalo per condividerlo");
+            },
+            function (err) {
+              console.error("Async: Could not copy text: ", err);
+            },
+          );
+        }}
+        class="flex items-center justify-center border p1 rounded text-center"
+      >
+        Share 📲
+      </button>
     </>
   );
 };
