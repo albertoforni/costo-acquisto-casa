@@ -81,6 +81,7 @@ export function Taxes() {
           Rendita Catastale
           <a
             href="https://sister.agenziaentrate.gov.it/CitizenVisure/"
+            rel="noopener noreferrer"
             target="_blank"
             class="inline-block ml-6 text-indigo-600 hover:underline"
           >
