@@ -2,12 +2,11 @@ import { App } from "@app/app";
 import { StoreContext } from "@app/store-context";
 import { init, StoreState } from "@app/store/index";
 import "@app/styles/tailwind.css";
-import * as dotenv from 'dotenv'; // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
-import mixpanel from "mixpanel-browser";
+import * as dotenv from "dotenv"; // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
 import { createRenderEffect } from "solid-js";
 import { render } from "solid-js/web";
 
-dotenv.config()
+dotenv.config();
 
 function initStore(): StoreState | undefined {
   try {
@@ -36,17 +35,27 @@ createRenderEffect(() => {
   saveStateInWindow();
 });
 
-const dispose = render(
-  () => {
-    mixpanel.init(process.env.SNOWPACK_PUBLIC_MIXPANEL_ID!, { debug: import.meta.env.MODE === "development" });
-    mixpanel.track("Open page");
+(function startTracking() {
+  const frag = document.createRange().createContextualFragment(`
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=${process.env.SNOWPACK_PUBLIC_GOOGLE_ANALYTICS_ID}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-    return (
-      <StoreContext.Provider value={store}>
-        <App />
-      </StoreContext.Provider>
-    )
-  },
+    gtag('config', '${process.env.SNOWPACK_PUBLIC_GOOGLE_ANALYTICS_ID}');
+  </script>
+  `);
+  document.getElementsByTagName("head")[0].appendChild(frag);
+})();
+
+const dispose = render(
+  () => (
+    <StoreContext.Provider value={store}>
+      <App />
+    </StoreContext.Provider>
+  ),
   document.getElementById("app")!,
 );
 
