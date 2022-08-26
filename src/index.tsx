@@ -1,10 +1,13 @@
-import { render } from "solid-js/web";
-import { createRenderEffect } from "solid-js";
-
-import "@app/styles/tailwind.css";
 import { App } from "@app/app";
-import { init, StoreState } from "@app/store/index";
 import { StoreContext } from "@app/store-context";
+import { init, StoreState } from "@app/store/index";
+import "@app/styles/tailwind.css";
+import * as dotenv from 'dotenv'; // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
+import mixpanel from "mixpanel-browser";
+import { createRenderEffect } from "solid-js";
+import { render } from "solid-js/web";
+
+dotenv.config()
 
 function initStore(): StoreState | undefined {
   try {
@@ -34,11 +37,17 @@ createRenderEffect(() => {
 });
 
 const dispose = render(
-  () => (
-    <StoreContext.Provider value={store}>
-      <App />
-    </StoreContext.Provider>
-  ),
+  () => {
+    debugger;
+    mixpanel.init(process.env.SNOWPACK_PUBLIC_MIXPANEL_ID!, { debug: import.meta.env.MODE === "development" });
+    mixpanel.track("Open page");
+
+    return (
+      <StoreContext.Provider value={store}>
+        <App />
+      </StoreContext.Provider>
+    )
+  },
   document.getElementById("app")!,
 );
 

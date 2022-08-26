@@ -23,6 +23,7 @@ const config = {
     "@snowpack/plugin-typescript",
     "@snowpack/plugin-babel",
     "@snowpack/plugin-postcss",
+    "@snowpack/plugin-dotenv",
   ],
   optimize: {
     bundle: true,
