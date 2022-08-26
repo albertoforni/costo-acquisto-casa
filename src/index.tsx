@@ -38,7 +38,6 @@ createRenderEffect(() => {
 
 const dispose = render(
   () => {
-    debugger;
     mixpanel.init(process.env.SNOWPACK_PUBLIC_MIXPANEL_ID!, { debug: import.meta.env.MODE === "development" });
     mixpanel.track("Open page");
 
