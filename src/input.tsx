@@ -25,14 +25,32 @@ export function Input(props: Props) {
   let ref: HTMLInputElement | undefined = undefined;
 
   return (
-    <div>
-      <div class="relative flex items-center rounded-md shadow-sm overflow-hidden">
-        <span class="absolute pl-1 ml-1">{props.symbol}</span>
+    <div class="relative">
+      <div class="relative flex items-center">
+        <span class="absolute left-3 text-muted-foreground font-medium">
+          {props.symbol}
+        </span>
         <input
           id={props.id}
-          class={"border w-full block focus:ring-indigo-500 focus:border-indigo-500 rounded-md border-gray-300 text-right p-1 disabled:bg-gray-200".concat(
-            props.isBold ? " font-bold" : "",
-          )}
+          class={`
+            w-full pl-8 pr-4 py-2.5
+            bg-background
+            border border-input
+            rounded-md
+            text-right
+            text-foreground
+            placeholder-muted-foreground
+            focus:outline-none
+            focus:ring-2
+            focus:ring-ring
+            focus:border-ring
+            transition-all
+            duration-200
+            disabled:bg-muted
+            disabled:text-muted-foreground
+            disabled:cursor-not-allowed
+            ${props.isBold ? "font-bold" : "font-medium"}
+          `}
           ref={(node) => (ref = node)}
           onFocus={() => {
             ref?.select();
