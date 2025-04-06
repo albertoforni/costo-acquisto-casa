@@ -1,11 +1,11 @@
 import { useContext } from "solid-js";
 
 import { Input } from "@app/input";
-import { mortgage, taxValues, totalAgencyFee } from "@app/store/rules";
 import { StoreContext } from "@app/store-context";
+import { mortgage, taxValues, totalAgencyFee } from "@app/store/rules";
 
 export function Total() {
-  const [state, setState] = useContext(StoreContext);
+  const [state, setState] = useContext(StoreContext)!;
 
   const mortgageCost = () => {
     return (

@@ -1,15 +1,15 @@
-import { Component, useContext } from "solid-js";
 import { Actions } from "@app/actions";
 import { Agency } from "@app/agency";
 import { Input } from "@app/input";
-import { StoreContext } from "@app/store-context";
-import { Taxes } from "@app/taxes";
 import { Mortgage } from "@app/mortgage";
 import { Notary } from "@app/notary";
+import { StoreContext } from "@app/store-context";
+import { Taxes } from "@app/taxes";
 import { Total } from "@app/total";
+import { Component, useContext } from "solid-js";
 
 export const App: Component = () => {
-  const [state, setState] = useContext(StoreContext);
+  const [state, setState] = useContext(StoreContext)!;
 
   return (
     <main class="max-w-2xl m-auto grid p-3">
@@ -21,7 +21,7 @@ export const App: Component = () => {
       </div>
       <p class="italic">Calcola quanto costa veramente comprare casa</p>
       <section class="mt-4 grid grid-cols-3 gap-2 font-bold text-xl">
-        <label class="col-span-2 flex items-center" htmlFor="price">
+        <label class="col-span-2 flex items-center" for="price">
           Prezzo di acquisto
         </label>
         <Input

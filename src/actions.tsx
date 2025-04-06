@@ -1,9 +1,10 @@
-import { Component, useContext } from "solid-js";
-import Ajv from "ajv";
 import { StoreContext } from "@app/store-context";
+import Ajv from "ajv";
+import { useContext } from "solid-js";
+import type { StoreState } from "./store";
 
 export const Actions = () => {
-  const [state, setState] = useContext(StoreContext);
+  const [state, setState] = useContext(StoreContext)!;
   const dataStr = () =>
     "data:text/json;charset=utf-8," +
     encodeURIComponent(JSON.stringify(state, null, 2));
@@ -23,7 +24,7 @@ export const Actions = () => {
         Salva 💾
       </a>
       <label
-        htmlFor="loadButton"
+        for="loadButton"
         class="flex items-center justify-center border p1 rounded cursor-pointer text-center"
       >
         Carica 📤
@@ -48,7 +49,7 @@ export const Actions = () => {
                   const jsonObj = JSON.parse(ev.target.result.toString());
                   const valid = validate(jsonObj);
                   if (valid) {
-                    setState(jsonObj);
+                    setState(jsonObj as StoreState);
                   } else {
                     console.error(validate.errors);
                     alert("Errore nel caricamento del file");

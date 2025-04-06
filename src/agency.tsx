@@ -1,11 +1,11 @@
 import { useContext } from "solid-js";
 
 import { Input } from "@app/input";
-import { agencyFee, totalAgencyFee } from "@app/store/rules";
 import { StoreContext } from "@app/store-context";
+import { agencyFee, totalAgencyFee } from "@app/store/rules";
 
 export function Agency() {
-  const [state, setState] = useContext(StoreContext);
+  const [state, setState] = useContext(StoreContext)!;
 
   const total = () => {
     return totalAgencyFee(state.building);
@@ -76,7 +76,7 @@ export function Agency() {
               )
             }
           />
-          <label htmlFor="selectAgencyFixed">
+          <label for="selectAgencyFixed">
             oppure indica il prezzo forfettario concordato con IVA
           </label>
         </label>

@@ -1,11 +1,11 @@
 import { useContext } from "solid-js";
 
 import { Input } from "@app/input";
-import { taxes, TaxesResult, taxValues } from "@app/store/rules";
 import { StoreContext } from "@app/store-context";
+import { TaxesResult, taxValues } from "@app/store/rules";
 
 export function Taxes() {
-  const [state, setState] = useContext(StoreContext);
+  const [state, setState] = useContext(StoreContext)!;
 
   const allTaxes = (): TaxesResult => {
     return taxValues(state.building);
@@ -85,7 +85,8 @@ export function Taxes() {
             target="_blank"
             class="inline-block ml-6 text-indigo-600 hover:underline"
           >
-            {" "}Trova rendita castastale
+            {" "}
+            Trova rendita castastale
           </a>
         </label>
         <Input

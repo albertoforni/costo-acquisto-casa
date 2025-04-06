@@ -2,11 +2,8 @@ import { App } from "@app/app";
 import { StoreContext } from "@app/store-context";
 import { init, StoreState } from "@app/store/index";
 import "@app/styles/tailwind.css";
-import * as dotenv from "dotenv"; // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
 import { createRenderEffect } from "solid-js";
 import { render } from "solid-js/web";
-
-dotenv.config();
 
 function initStore(): StoreState | undefined {
   try {
@@ -35,20 +32,20 @@ createRenderEffect(() => {
   saveStateInWindow();
 });
 
-(function startTracking() {
-  const frag = document.createRange().createContextualFragment(`
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=${process.env.SNOWPACK_PUBLIC_GOOGLE_ANALYTICS_ID}"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+// (function startTracking() {
+//   const frag = document.createRange().createContextualFragment(`
+//   <!-- Google tag (gtag.js) -->
+//   <script async src="https://www.googletagmanager.com/gtag/js?id=${process.env.VITE_PUBLIC_GOOGLE_ANALYTICS_ID}"></script>
+//   <script>
+//     window.dataLayer = window.dataLayer || [];
+//     function gtag(){dataLayer.push(arguments);}
+//     gtag('js', new Date());
 
-    gtag('config', '${process.env.SNOWPACK_PUBLIC_GOOGLE_ANALYTICS_ID}');
-  </script>
-  `);
-  document.getElementsByTagName("head")[0].appendChild(frag);
-})();
+//     gtag('config', '${process.env.VITE_PUBLIC_GOOGLE_ANALYTICS_ID}');
+//   </script>
+//   `);
+//   document.getElementsByTagName("head")[0].appendChild(frag);
+// })();
 
 const dispose = render(
   () => (
@@ -58,14 +55,3 @@ const dispose = render(
   ),
   document.getElementById("app")!,
 );
-
-/**
- * Hot Module Replacement (HMR) - Remove this snippet to remove HMR.
- * Learn more: https://www.snowpack.dev/#hot-module-replacement
- *
- * Note: Solid doesn't support state preservation on hot reload as of yet
- */
-if (import.meta.env.MODE === "development") {
-  import.meta.hot.accept();
-  import.meta.hot.dispose(dispose);
-}

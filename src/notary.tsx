@@ -1,11 +1,10 @@
 import { useContext } from "solid-js";
 
 import { Input } from "@app/input";
-import { agencyFee } from "@app/store/rules";
 import { StoreContext } from "@app/store-context";
 
 export function Notary() {
-  const [state, setState] = useContext(StoreContext);
+  const [state, setState] = useContext(StoreContext)!;
 
   return (
     <section class="mt-4 grid grid-cols-3 gap-2 border p-2 border-gray-200 rounded">
