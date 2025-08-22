@@ -87,10 +87,25 @@ describe("Taxes", () => {
       taxes({
         isPrimaCasa: true,
         isSoldByCompany: false,
-        renditaCatastale: 10,
+        renditaCatastale: 500, // Use higher value to exceed €1,000 minimum
       }),
     ).toEqual({
-      registro: (10 * 115.5 * 2) / 100,
+      registro: (500 * 115.5 * 2) / 100, // = €1,155
+      catastale: 50,
+      ipotecaria: 50,
+      VAT: 0,
+    });
+  });
+
+  it("applies minimum €1,000 registration tax for prima casa when calculated amount is lower", () => {
+    expect(
+      taxes({
+        isPrimaCasa: true,
+        isSoldByCompany: false,
+        renditaCatastale: 1, // Very low rendita that would calculate to less than €1,000
+      }),
+    ).toEqual({
+      registro: 1000, // Minimum applies
       catastale: 50,
       ipotecaria: 50,
       VAT: 0,
@@ -106,6 +121,21 @@ describe("Taxes", () => {
       }),
     ).toEqual({
       registro: 11_340,
+      catastale: 50,
+      ipotecaria: 50,
+      VAT: 0,
+    });
+  });
+
+  it("applies minimum €1,000 registration tax for seconda casa when calculated amount is lower", () => {
+    expect(
+      taxes({
+        isPrimaCasa: false,
+        isSoldByCompany: false,
+        renditaCatastale: 1, // Very low rendita that would calculate to less than €1,000
+      }),
+    ).toEqual({
+      registro: 1000, // Minimum applies
       catastale: 50,
       ipotecaria: 50,
       VAT: 0,
