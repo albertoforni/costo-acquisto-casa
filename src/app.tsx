@@ -37,14 +37,19 @@ export const App: Component = () => {
                   <Home class="h-8 w-8" />
                   Costo Acquisto Casa
                 </h1>
-                <p class="text-base-content/70 mt-1">
+                <p class="text-base-content/80 mt-1">
                   Calcola quanto costa veramente comprare casa
                 </p>
               </div>
               <div class="flex gap-2 items-center self-start sm:self-auto flex-wrap">
                 <Actions />
-                <label class="swap swap-rotate">
+                <label
+                  class="swap swap-rotate"
+                  for="theme-toggle"
+                  aria-label="Attiva/disattiva tema scuro"
+                >
                   <input
+                    id="theme-toggle"
                     type="checkbox"
                     checked={state.theme === "dark"}
                     onChange={(e) => {

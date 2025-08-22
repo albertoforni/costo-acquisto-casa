@@ -14,6 +14,7 @@ export const Actions = () => {
     <>
       <a
         role="button"
+        aria-label="Scarica i dati come file JSON"
         href={dataStr()}
         download={
           state.building.description.trim() === ""
@@ -27,6 +28,7 @@ export const Actions = () => {
       <label
         for="loadButton"
         class="gap-2 cursor-pointer btn btn-outline btn-sm"
+        aria-label="Carica dati da file JSON"
       >
         <Upload class="w-4 h-4" />
         <input
@@ -35,6 +37,7 @@ export const Actions = () => {
           id="loadButton"
           accept="text/json"
           role="button"
+          aria-label="Seleziona file JSON da caricare"
           class="hidden"
           onChange={(e) => {
             if (e.currentTarget.files?.length === 1) {
@@ -63,6 +66,7 @@ export const Actions = () => {
         />
       </label>
       <button
+        aria-label="Copia link di condivisione negli appunti"
         onClick={() => {
           navigator.clipboard.writeText(window.location.toString()).then(
             function () {
