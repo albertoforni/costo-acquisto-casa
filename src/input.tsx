@@ -27,30 +27,14 @@ export function Input(props: Props) {
   return (
     <div class="relative">
       <div class="relative flex items-center">
-        <span class="absolute left-3 text-muted-foreground font-medium">
+        <span class="absolute left-3 text-base-content/70 font-medium">
           {props.symbol}
         </span>
         <input
           id={props.id}
-          class={`
-            w-full pl-8 pr-4 py-2.5
-            bg-background
-            border border-input
-            rounded-md
-            text-right
-            text-foreground
-            placeholder-muted-foreground
-            focus:outline-none
-            focus:ring-2
-            focus:ring-ring
-            focus:border-ring
-            transition-all
-            duration-200
-            disabled:bg-muted
-            disabled:text-muted-foreground
-            disabled:cursor-not-allowed
-            ${props.isBold ? "font-bold" : "font-medium"}
-          `}
+          class={`input input-bordered w-full pl-8 text-right ${
+            props.isBold ? "font-bold" : "font-medium"
+          }`}
           ref={(node) => (ref = node)}
           onFocus={() => {
             ref?.select();

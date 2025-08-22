@@ -1,5 +1,6 @@
 import { StoreContext } from "@app/store-context";
 import Ajv from "ajv";
+import { Save, Upload, Share2 } from "lucide-solid";
 import { useContext } from "solid-js";
 import type { StoreState } from "./store";
 
@@ -19,15 +20,17 @@ export const Actions = () => {
             ? "costo-casa.json"
             : state.building.description.toLocaleLowerCase() + ".json"
         }
-        class="flex items-center justify-center border p1 rounded text-center"
+        class="btn btn-outline btn-sm gap-2"
       >
-        Salva 💾
+        <Save class="h-4 w-4" />
+        <span>Salva</span>
       </a>
       <label
         for="loadButton"
-        class="flex items-center justify-center border p1 rounded cursor-pointer text-center"
+        class="btn btn-outline btn-sm cursor-pointer gap-2"
       >
-        Carica 📤
+        <Upload class="h-4 w-4" />
+        <span>Carica</span>
         <input
           type="file"
           name="loadButton"
@@ -72,9 +75,10 @@ export const Actions = () => {
             },
           );
         }}
-        class="flex items-center justify-center border p1 rounded text-center"
+        class="btn btn-primary btn-sm gap-2"
       >
-        Share 📲
+        <Share2 class="h-4 w-4" />
+        <span>Share</span>
       </button>
     </>
   );
