@@ -79,7 +79,7 @@ export function Taxes() {
           <label class="col-span-2 flex items-center" for="renditaCatastale">
             Rendita Catastale
             <a
-              href="https://sister.agenziaentrate.gov.it/CitizenVisure/"
+              href="https://sister3.agenziaentrate.gov.it/CitizenVisure/index.do"
               rel="noopener noreferrer"
               target="_blank"
               class="link link-primary ml-6"
