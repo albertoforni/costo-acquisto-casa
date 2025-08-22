@@ -20,17 +20,15 @@ export const Actions = () => {
             ? "costo-casa.json"
             : state.building.description.toLocaleLowerCase() + ".json"
         }
-        class="btn btn-outline btn-sm gap-2"
+        class="gap-2 btn btn-outline btn-sm"
       >
-        <Save class="h-4 w-4" />
-        <span>Salva</span>
+        <Save class="w-4 h-4" />
       </a>
       <label
         for="loadButton"
-        class="btn btn-outline btn-sm cursor-pointer gap-2"
+        class="gap-2 cursor-pointer btn btn-outline btn-sm"
       >
-        <Upload class="h-4 w-4" />
-        <span>Carica</span>
+        <Upload class="w-4 h-4" />
         <input
           type="file"
           name="loadButton"
@@ -75,10 +73,9 @@ export const Actions = () => {
             },
           );
         }}
-        class="btn btn-primary btn-sm gap-2"
+        class="gap-2 btn btn-primary btn-sm"
       >
-        <Share2 class="h-4 w-4" />
-        <span>Share</span>
+        <Share2 class="w-4 h-4" />
       </button>
     </>
   );
