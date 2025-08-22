@@ -28,12 +28,12 @@ export const App: Component = () => {
 
   return (
     <div class="min-h-screen bg-base-200">
-      <main class="max-w-4xl mx-auto p-6 space-y-6">
+      <main class="max-w-4xl mx-auto p-4 sm:p-6 space-y-6">
         <div class="card bg-base-100 shadow-xl">
           <div class="card-body">
-            <div class="flex justify-between items-start">
-              <div>
-                <h1 class="card-title text-3xl flex items-center gap-2">
+            <div class="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-start">
+              <div class="min-w-0">
+                <h1 class="card-title text-2xl sm:text-3xl flex items-center gap-2">
                   <Home class="h-8 w-8" />
                   Costo Acquisto Casa
                 </h1>
@@ -41,7 +41,7 @@ export const App: Component = () => {
                   Calcola quanto costa veramente comprare casa
                 </p>
               </div>
-              <div class="flex gap-2 items-center">
+              <div class="flex gap-2 items-center self-start sm:self-auto flex-wrap">
                 <Actions />
                 <label class="swap swap-rotate">
                   <input
@@ -72,9 +72,9 @@ export const App: Component = () => {
             </div>
 
             <section class="space-y-4 mt-2">
-              <div class="grid grid-cols-3 gap-4 items-center">
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
                 <label
-                  class="col-span-2 text-lg font-semibold flex items-center gap-2"
+                  class="sm:col-span-2 text-lg font-semibold flex items-center gap-2"
                   for="price"
                 >
                   <Calculator class="h-5 w-5" />

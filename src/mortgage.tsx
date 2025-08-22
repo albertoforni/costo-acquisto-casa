@@ -35,8 +35,8 @@ export function Mortgage() {
           />
           <h2 class="inline-block">Mutuo</h2>
         </label>
-        <div class="grid grid-cols-3 gap-2">
-          <label class="col-span-2 flex items-center" for="mortgage">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+          <label class="sm:col-span-2 flex items-center" for="mortgage">
             Importo Mutuo
           </label>
           <Input
@@ -47,8 +47,8 @@ export function Mortgage() {
             onChange={(value) => setState("building", "mortgage", value)}
           />
         </div>
-        <div class="grid grid-cols-3 gap-2">
-          <label class="col-span-2 flex items-center" for="praticaMutuo">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+          <label class="sm:col-span-2 flex items-center" for="praticaMutuo">
             Importo pratica mutuo
           </label>
           <Input
@@ -61,8 +61,8 @@ export function Mortgage() {
             onChange={(value) => setState("building", "particaMutuo", value)}
           />
         </div>
-        <div class="grid grid-cols-3 gap-2">
-          <label class="col-span-2 flex items-center" for="perizia">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+          <label class="sm:col-span-2 flex items-center" for="perizia">
             Perizia dell'immobile
           </label>
           <Input
@@ -73,8 +73,11 @@ export function Mortgage() {
             onChange={(value) => setState("building", "perizia", value)}
           />
         </div>
-        <div class="grid grid-cols-3 gap-2">
-          <label class="col-span-2 flex items-center" for="impostaSostitutiva">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+          <label
+            class="sm:col-span-2 flex items-center"
+            for="impostaSostitutiva"
+          >
             Imposta sostitutiva
           </label>
           <Input
@@ -84,9 +87,9 @@ export function Mortgage() {
             value={state.building.hasMortgage ? impostaSostitutiva() : null}
           />
         </div>
-        <div class="grid grid-cols-3 gap-2">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
           <label
-            class="col-span-2 flex items-center font-bold"
+            class="sm:col-span-2 flex items-center font-bold"
             for="costiMutuo"
           >
             Totale costi per mutuo

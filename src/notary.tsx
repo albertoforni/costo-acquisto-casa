@@ -12,8 +12,8 @@ export function Notary() {
         <div class="col-span-3 font-bold text-xl flex items-center">
           <h2 class="inline-block">Oneri Notarili</h2>
         </div>
-        <div class="grid grid-cols-3 gap-2">
-          <label class="col-span-2 flex items-center" for="notary">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+          <label class="sm:col-span-2 flex items-center" for="notary">
             Oneri notarili IVA 22% inclusa
           </label>
           <Input
@@ -23,9 +23,9 @@ export function Notary() {
             onChange={(value) => setState("building", "notaryFee", value)}
           />
         </div>
-        <div class="grid grid-cols-3 gap-2">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
           <label
-            class="col-span-2 flex items-center font-bold"
+            class="sm:col-span-2 flex items-center font-bold"
             for="notaryTotal"
           >
             Totale Oneri Notarili

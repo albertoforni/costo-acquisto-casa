@@ -46,8 +46,8 @@ export function Total() {
         </div>
 
         <div class="space-y-6">
-          <div class="grid grid-cols-3 gap-4 items-center">
-            <label class="col-span-2 text-lg font-semibold" for="totalCost">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
+            <label class="sm:col-span-2 text-lg font-semibold" for="totalCost">
               Totale costi
             </label>
             <Input
@@ -59,8 +59,8 @@ export function Total() {
             />
           </div>
 
-          <div class="grid grid-cols-3 gap-4 items-center">
-            <label class="col-span-2 text-lg font-semibold" for="grandTotal">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
+            <label class="sm:col-span-2 text-lg font-semibold" for="grandTotal">
               Totale esborso monetario
             </label>
             <Input

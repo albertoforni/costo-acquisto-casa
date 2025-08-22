@@ -21,8 +21,8 @@ export function Taxes() {
         <div class="col-span-3 font-bold text-xl flex items-center">
           <h2 class="inline-block">Imposte e Tasse</h2>
         </div>
-        <div class="grid grid-cols-3 gap-2">
-          <label class="col-span-2 flex items-center" for="seller">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+          <label class="sm:col-span-2 flex items-center" for="seller">
             Il soggetto venditore e'
           </label>
           <select
@@ -46,8 +46,8 @@ export function Taxes() {
             </option>
           </select>
         </div>
-        <div class="grid grid-cols-3 gap-2">
-          <label class="col-span-2 flex items-center" for="prima-casa">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+          <label class="sm:col-span-2 flex items-center" for="prima-casa">
             L'immobile costituisce
           </label>
           <select
@@ -73,10 +73,12 @@ export function Taxes() {
         </div>
         <div
           class={
-            state.building.isSoldByCompany ? "hidden" : "grid grid-cols-3 gap-2"
+            state.building.isSoldByCompany
+              ? "hidden"
+              : "grid grid-cols-1 sm:grid-cols-3 gap-2"
           }
         >
-          <label class="col-span-2 flex items-center" for="renditaCatastale">
+          <label class="sm:col-span-2 flex items-center" for="renditaCatastale">
             Rendita Catastale
             <a
               href="https://sister3.agenziaentrate.gov.it/CitizenVisure/index.do"
@@ -100,16 +102,18 @@ export function Taxes() {
         </div>
         <div
           class={
-            state.building.isSoldByCompany ? "grid grid-cols-3 gap-2" : "hidden"
+            state.building.isSoldByCompany
+              ? "grid grid-cols-1 sm:grid-cols-3 gap-2"
+              : "hidden"
           }
         >
-          <label class="col-span-2 flex items-center" for="VAT">
+          <label class="sm:col-span-2 flex items-center" for="VAT">
             IVA {state.building.isPrimaCasa ? "4%" : "10%"}
           </label>
           <Input id="VAT" symbol="€" disabled={true} value={allTaxes().VAT} />
         </div>
-        <div class="grid grid-cols-3 gap-2">
-          <label class="col-span-2 flex items-center" for="registro">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+          <label class="sm:col-span-2 flex items-center" for="registro">
             Imposta di registro
           </label>
           <Input
@@ -119,8 +123,8 @@ export function Taxes() {
             value={allTaxes().registro}
           />
         </div>
-        <div class="grid grid-cols-3 gap-2">
-          <label class="col-span-2 flex items-center" for="catastale">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+          <label class="sm:col-span-2 flex items-center" for="catastale">
             Imposta catastale
           </label>
           <Input
@@ -130,8 +134,8 @@ export function Taxes() {
             value={allTaxes().catastale}
           />
         </div>
-        <div class="grid grid-cols-3 gap-2">
-          <label class="col-span-2 flex items-center" for="ipotecaria">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+          <label class="sm:col-span-2 flex items-center" for="ipotecaria">
             Imposta ipotecaria
           </label>
           <Input
@@ -141,9 +145,9 @@ export function Taxes() {
             value={allTaxes().ipotecaria}
           />
         </div>
-        <div class="grid grid-cols-3 gap-2">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
           <label
-            class="col-span-2 flex items-center font-bold"
+            class="sm:col-span-2 flex items-center font-bold"
             for="taxesTotal"
           >
             Totale

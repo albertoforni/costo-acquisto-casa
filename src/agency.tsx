@@ -25,8 +25,8 @@ export function Agency() {
           />
           <h2 class="inline-block">Agenzia</h2>
         </label>
-        <div class="grid grid-cols-3 gap-2">
-          <label class="col-span-2 flex items-center" for="percentage">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+          <label class="sm:col-span-2 flex items-center" for="percentage">
             Di norma le agenzie hanno una provvigione del 3% + IVA 22% sul
             prezzo di vendita
           </label>
@@ -48,7 +48,7 @@ export function Agency() {
             }
           />
         </div>
-        <div class="col-start-3">
+        <div class="sm:col-start-3">
           <Input
             id="percentageFee"
             symbol="€"
@@ -65,8 +65,8 @@ export function Agency() {
             }
           />
         </div>
-        <div class="grid grid-cols-3 gap-2">
-          <label class="col-span-2 flex items-center" for="agencyFixed">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+          <label class="sm:col-span-2 flex items-center" for="agencyFixed">
             <input
               id="selectAgencyFixed"
               type="checkbox"
@@ -96,9 +96,9 @@ export function Agency() {
             }
           />
         </div>
-        <div class="grid grid-cols-3 gap-2">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
           <label
-            class="col-span-2 flex items-center font-bold"
+            class="sm:col-span-2 flex items-center font-bold"
             for="agencyTotal"
           >
             Totale Costi Agenzia
