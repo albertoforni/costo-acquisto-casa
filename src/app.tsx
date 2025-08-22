@@ -7,10 +7,24 @@ import { StoreContext } from "@app/store-context";
 import { Taxes } from "@app/taxes";
 import { Total } from "@app/total";
 import { Calculator, Home } from "lucide-solid";
-import { Component, useContext } from "solid-js";
+import { Component, useContext, onMount, createEffect } from "solid-js";
 
 export const App: Component = () => {
   const [state, setState] = useContext(StoreContext)!;
+
+  // Initialize theme on mount
+  onMount(() => {
+    // Apply the current theme from store
+    document.documentElement.setAttribute("data-theme", state.theme);
+    localStorage.setItem("theme", state.theme);
+  });
+
+  // Watch for theme changes and update DOM and localStorage
+  createEffect(() => {
+    const currentTheme = state.theme;
+    document.documentElement.setAttribute("data-theme", currentTheme);
+    localStorage.setItem("theme", currentTheme);
+  });
 
   return (
     <div class="min-h-screen bg-base-200">
@@ -32,13 +46,11 @@ export const App: Component = () => {
                 <label class="swap swap-rotate">
                   <input
                     type="checkbox"
+                    checked={state.theme === "dark"}
                     onChange={(e) => {
                       const isDark = (e.currentTarget as HTMLInputElement)
                         .checked;
-                      document.documentElement.setAttribute(
-                        "data-theme",
-                        isDark ? "dark" : "light",
-                      );
+                      setState("theme", isDark ? "dark" : "light");
                     }}
                   />
                   <svg
