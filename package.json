@@ -5,16 +5,15 @@
     "format": "prettier --write \"src/**/*.{ts,js}\"",
     "lint": "prettier --check \"src/**/*.{ts,js}\"",
     "test": "jest",
-    "test:watch": "jest --watch",
-    "make-store-json-schema": "typescript-json-schema ./tsconfig.json StoreState -o src/store/store-schema.json"
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "@tailwindcss/forms": "^0.3.2",
-    "ajv": "^8.4.0",
     "dotenv": "^16.0.1",
     "lucide-solid": "^0.487.0",
     "solid-js": "^1.9.5",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@babel/core": "^7.13.10",
@@ -29,7 +28,6 @@
     "tailwindcss": "^4.1.12",
     "ts-jest": "^26.5.4",
     "typescript": "^4.2.3",
-    "typescript-json-schema": "^0.50.0",
     "vite": "^7.1.3",
     "vite-plugin-solid": "^2.11.8"
   }

@@ -1,11 +1,20 @@
 import { createStore } from "solid-js/store";
+import { z } from "zod";
 
-import { Building, init as initBuildings } from "@app/store/building";
+import {
+  Building,
+  BuildingSchema,
+  init as initBuildings,
+} from "@app/store/building";
 
-export type StoreState = {
-  building: Building;
-  theme: "light" | "dark";
-};
+// Zod schema for validating imported store state
+export const StoreStateSchema = z.object({
+  building: BuildingSchema,
+  theme: z.enum(["light", "dark"]),
+});
+
+// Export the inferred StoreState type
+export type StoreState = z.infer<typeof StoreStateSchema>;
 
 // Detect initial theme preference
 function detectInitialTheme(): "light" | "dark" {

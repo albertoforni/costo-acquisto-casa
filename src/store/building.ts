@@ -1,37 +1,48 @@
 import { Id, id } from "@app/utils";
+import { z } from "zod";
 
-type Agency = {
-  isViaAgent: boolean;
-  agentPercentageFee: number;
-  hasOverriddenAgencyFee: boolean;
-  overriddenAgentFee: number;
-};
+const AgencySchema = z.object({
+  isViaAgent: z.boolean(),
+  agentPercentageFee: z.number(),
+  hasOverriddenAgencyFee: z.boolean(),
+  overriddenAgentFee: z.number(),
+});
 
-type Taxes = {
-  isPrimaCasa: boolean;
-  isSoldByCompany: boolean;
-  renditaCatastale: number;
-};
+const TaxesSchema = z.object({
+  isPrimaCasa: z.boolean(),
+  isSoldByCompany: z.boolean(),
+  renditaCatastale: z.number(),
+});
 
-type Mortgage = {
-  hasMortgage: boolean;
-  mortgage: number;
-  particaMutuo: number;
-  perizia: number;
-};
+const MortgageSchema = z.object({
+  hasMortgage: z.boolean(),
+  mortgage: z.number(),
+  particaMutuo: z.number(),
+  perizia: z.number(),
+});
 
-type Notary = {
-  notaryFee: number;
-};
+const NotarySchema = z.object({
+  notaryFee: z.number(),
+});
 
-export type Building = {
-  id: Id;
-  price: number;
-  description: string;
-} & Agency &
-  Taxes &
-  Mortgage &
-  Notary;
+const BaseSchema = z.object({
+  id: z.string(),
+  price: z.number(),
+  description: z.string(),
+});
+
+export type Agency = z.infer<typeof AgencySchema>;
+export type Taxes = z.infer<typeof TaxesSchema>;
+export type Mortgage = z.infer<typeof MortgageSchema>;
+export type Notary = z.infer<typeof NotarySchema>;
+
+export const BuildingSchema = BaseSchema
+  .merge(AgencySchema)
+  .merge(TaxesSchema)
+  .merge(MortgageSchema)
+  .merge(NotarySchema);
+
+export type Building = z.infer<typeof BuildingSchema>;
 
 export function init(): Building {
   return {

@@ -3,6 +3,7 @@ import { analytics } from "@app/analytics";
 import { Save, Upload, Share2 } from "lucide-solid";
 import { useContext } from "solid-js";
 import type { StoreState } from "./store";
+import { StoreStateSchema } from "./store";
 
 export const Actions = () => {
   const [state, setState] = useContext(StoreContext)!;
@@ -45,21 +46,28 @@ export const Actions = () => {
           onChange={(e) => {
             if (e.currentTarget.files?.length === 1) {
               const reader = new FileReader();
-              reader.onload = async function (ev: ProgressEvent<FileReader>) {
-                const storeSchema = await fetch(
-                  "/assets/store/store-schema.json",
-                ).then((res) => res.json());
-                const ajv = new Ajv();
-                const validate = ajv.compile(storeSchema);
-
+              reader.onload = function (ev: ProgressEvent<FileReader>) {
                 if (ev.target && ev.target.result) {
-                  const jsonObj = JSON.parse(ev.target.result.toString());
-                  const valid = validate(jsonObj);
-                  if (valid) {
-                    setState(jsonObj as StoreState);
-                  } else {
-                    console.error(validate.errors);
-                    alert("Errore nel caricamento del file");
+                  try {
+                    const jsonObj = JSON.parse(ev.target.result.toString());
+                    const validationResult =
+                      StoreStateSchema.safeParse(jsonObj);
+
+                    if (validationResult.success) {
+                      setState(validationResult.data);
+                      analytics.trackLoad();
+                    } else {
+                      console.error(
+                        "Validation errors:",
+                        validationResult.error.issues,
+                      );
+                      alert(
+                        "Errore nel caricamento del file: formato non valido",
+                      );
+                    }
+                  } catch (parseError) {
+                    console.error("JSON parse error:", parseError);
+                    alert("Errore nel caricamento del file: JSON non valido");
                   }
                 }
               };
