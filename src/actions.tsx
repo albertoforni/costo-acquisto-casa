@@ -1,5 +1,5 @@
 import { StoreContext } from "@app/store-context";
-import Ajv from "ajv";
+import { analytics } from "@app/analytics";
 import { Save, Upload, Share2 } from "lucide-solid";
 import { useContext } from "solid-js";
 import type { StoreState } from "./store";
@@ -22,6 +22,9 @@ export const Actions = () => {
             : state.building.description.toLocaleLowerCase() + ".json"
         }
         class="gap-2 btn btn-outline btn-sm"
+        onClick={() => {
+          analytics.trackSave();
+        }}
       >
         <Save class="w-4 h-4" />
       </a>
@@ -71,6 +74,7 @@ export const Actions = () => {
           navigator.clipboard.writeText(window.location.toString()).then(
             function () {
               alert("Link copiato, incollalo per condividerlo");
+              analytics.trackShare();
             },
             function (err) {
               console.error("Async: Could not copy text: ", err);

@@ -32,20 +32,29 @@ createRenderEffect(() => {
   saveStateInWindow();
 });
 
-// (function startTracking() {
-//   const frag = document.createRange().createContextualFragment(`
-//   <!-- Google tag (gtag.js) -->
-//   <script async src="https://www.googletagmanager.com/gtag/js?id=${process.env.VITE_PUBLIC_GOOGLE_ANALYTICS_ID}"></script>
-//   <script>
-//     window.dataLayer = window.dataLayer || [];
-//     function gtag(){dataLayer.push(arguments);}
-//     gtag('js', new Date());
+// Google Analytics 4
+(function startTracking() {
+  if (!import.meta.env.VITE_PUBLIC_GOOGLE_ANALYTICS_ID) return;
 
-//     gtag('config', '${process.env.VITE_PUBLIC_GOOGLE_ANALYTICS_ID}');
-//   </script>
-//   `);
-//   document.getElementsByTagName("head")[0].appendChild(frag);
-// })();
+  const frag = document.createRange().createContextualFragment(`
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=${
+    import.meta.env.VITE_PUBLIC_GOOGLE_ANALYTICS_ID
+  }"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', '${import.meta.env.VITE_PUBLIC_GOOGLE_ANALYTICS_ID}', {
+      anonymize_ip: true,
+      allow_google_signals: false,
+      allow_ad_personalization_signals: false
+    });
+  </script>
+  `);
+  document.getElementsByTagName("head")[0].appendChild(frag);
+})();
 
 const dispose = render(
   () => (

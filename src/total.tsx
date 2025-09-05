@@ -35,19 +35,19 @@ export function Total() {
   };
 
   return (
-    <section class="card bg-base-100 shadow-xl">
-      <div class="card-body space-y-6">
-        <div class="flex items-center justify-between">
-          <h2 class="text-2xl font-bold flex items-center gap-2">
-            <Calculator class="h-6 w-6" />
+    <section class="shadow-xl card bg-base-100">
+      <div class="space-y-6 card-body">
+        <div class="flex justify-between items-center">
+          <h2 class="flex gap-2 items-center text-2xl font-bold">
+            <Calculator class="w-6 h-6" />
             Totali
           </h2>
-          <div class="h-px flex-1 mx-4 bg-gradient-to-r from-transparent via-base-300 to-transparent"></div>
+          <div class="flex-1 mx-4 h-px bg-gradient-to-r from-transparent to-transparent via-base-300"></div>
         </div>
 
         <div class="space-y-6">
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
-            <label class="sm:col-span-2 text-lg font-semibold" for="totalCost">
+          <div class="grid grid-cols-1 gap-4 items-center sm:grid-cols-3">
+            <label class="text-lg font-semibold sm:col-span-2" for="totalCost">
               Totale costi
             </label>
             <Input
@@ -59,8 +59,8 @@ export function Total() {
             />
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
-            <label class="sm:col-span-2 text-lg font-semibold" for="grandTotal">
+          <div class="grid grid-cols-1 gap-4 items-center sm:grid-cols-3">
+            <label class="text-lg font-semibold sm:col-span-2" for="grandTotal">
               Totale esborso monetario
             </label>
             <Input
@@ -73,8 +73,8 @@ export function Total() {
           </div>
         </div>
 
-        <div class="mt-4 p-4 bg-base-200 rounded-md">
-          <p class="text-sm flex items-start gap-2">
+        <div class="p-4 mt-4 rounded-md bg-base-200">
+          <p class="flex gap-2 items-start text-sm">
             <Info class="h-4 w-4 mt-0.5 flex-shrink-0" />
             <span>
               Il totale esborso monetario include il prezzo di acquisto più
