@@ -97,7 +97,10 @@ export const ErrorBoundary: Component<ErrorBoundaryProps> = (props) => {
   });
 
   // Catch synchronous errors in the component tree
-  const errorHandler = (error: Error) => {
+  const errorHandler = (
+    e: ErrorEvent & { currentTarget: HTMLDivElement; target: Element },
+  ) => {
+    const error = e.error || new Error(e.message || "Unknown error");
     console.error("Component error:", error);
     setError(error);
   };
