@@ -1,4 +1,28 @@
 {
+  "name": "costo-acquisto-casa",
+  "version": "1.0.0",
+  "description": "Complete calculator for real estate purchase costs in Italy - taxes, duties, agency commissions, mortgage and notary fees",
+  "keywords": [
+    "real-estate",
+    "italy",
+    "taxes",
+    "mortgage",
+    "notary",
+    "calculator",
+    "casa",
+    "immobiliare",
+    "tasse"
+  ],
+  "author": "Alberto Forni",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/albertoforni/costo-acquisto-casa.git"
+  },
+  "homepage": "https://github.com/albertoforni/costo-acquisto-casa#readme",
+  "bugs": {
+    "url": "https://github.com/albertoforni/costo-acquisto-casa/issues"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
