@@ -1,4 +1,5 @@
 import { App } from "@app/app";
+import { ErrorBoundary } from "@app/error-boundary";
 import { StoreContext } from "@app/store-context";
 import { init, StoreState } from "@app/store/index";
 import "@app/styles/tailwind.css";
@@ -58,9 +59,11 @@ createRenderEffect(() => {
 
 const dispose = render(
   () => (
-    <StoreContext.Provider value={store}>
-      <App />
-    </StoreContext.Provider>
+    <ErrorBoundary>
+      <StoreContext.Provider value={store}>
+        <App />
+      </StoreContext.Provider>
+    </ErrorBoundary>
   ),
   document.getElementById("app")!,
 );
