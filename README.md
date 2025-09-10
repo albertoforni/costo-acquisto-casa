@@ -155,7 +155,7 @@ This project is released under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## 📞 Support
 
-If you have questions or found a bug, please open an [issue](https://github.com/yourusername/costo-acquisto-casa/issues).
+If you have questions or found a bug, please open an [issue](https://github.com/albertoforni/costo-acquisto-casa/issues).
 
 ---
 
