@@ -144,7 +144,7 @@ describe("Taxes", () => {
 });
 
 describe("Mortgage", () => {
-  it("imposta sostitutiva al 0.25% se prima casa", () => {
+  it("applies 0.25% substitute tax for primary home", () => {
     expect(
       mortgage({
         mortgage: 100,
@@ -155,7 +155,7 @@ describe("Mortgage", () => {
     });
   });
 
-  it("imposta sostitutiva al 2% se prima casa", () => {
+  it("applies 2% substitute tax for secondary home", () => {
     expect(
       mortgage({
         mortgage: 200,
