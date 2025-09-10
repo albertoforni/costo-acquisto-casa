@@ -36,8 +36,7 @@ export type Taxes = z.infer<typeof TaxesSchema>;
 export type Mortgage = z.infer<typeof MortgageSchema>;
 export type Notary = z.infer<typeof NotarySchema>;
 
-export const BuildingSchema = BaseSchema
-  .merge(AgencySchema)
+export const BuildingSchema = BaseSchema.merge(AgencySchema)
   .merge(TaxesSchema)
   .merge(MortgageSchema)
   .merge(NotarySchema);
