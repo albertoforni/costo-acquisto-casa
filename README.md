@@ -25,11 +25,11 @@ A comprehensive and accurate calculator to estimate all costs associated with pu
 
 ### Dark Mode
 
-![Dark Mode Interface](docs/images/dark-mode-screenshot.png)
+![Dark Mode Interface](docs/images/darkmode.png)
 
 ### Light Mode
 
-![Light Mode Interface](docs/images/light-mode-screenshot.png)
+![Light Mode Interface](docs/images/lightmode.png)
 
 The calculator features a modern, responsive design with both dark and light themes. The interface is optimized for both desktop and mobile use, making it easy to calculate property purchase costs on any device.
 
